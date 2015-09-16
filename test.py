@@ -1,0 +1,2 @@
+from analogop import geturlopen
+
