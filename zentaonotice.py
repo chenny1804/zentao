@@ -78,12 +78,16 @@ def analysis_buglist(item_list):
         #for i in range(0,len(bug_href)):
         #    if str(bug_href[i]).decode("utf-8").find("/zentao/bug-view-") and str(bug_href[i]).decode("utf-8").find("target=\"_blank\"")  > 0:
         #        print i, str(bug_href[i]).decode("utf-8").split('href=\"')[1].split('\" ')[0]
-        BUG_CREATOR=str(bug_name1[4]).split('>')[1].split('<')[0]
-        BUG_RD=str(bug_name1[5]).split('>')[1].split('<')[0]
-        BUG_TITLE=str(bug_name1[3]).split("=\"")[2].split('\"')[0]
-        bug_value=soup.findAll("input")
-        BUG_ID=str(bug_value[2]).split("value=")[1].split("\"")[1]
-        BUG_NUM=str(bug_num[0]).split('>')[1].split('<')[0]
+        try:
+            BUG_CREATOR=str(bug_name1[4]).split('>')[1].split('<')[0]
+            BUG_RD=str(bug_name1[5]).split('>')[1].split('<')[0]
+            BUG_TITLE=str(bug_name1[3]).split("=\"")[2].split('\"')[0]
+            bug_value=soup.findAll("input")
+            BUG_ID=str(bug_value[2]).split("value=")[1].split("\"")[1]
+            BUG_NUM=str(bug_num[0]).split('>')[1].split('<')[0]
+        except Exception,e:
+            print e
+            return 0,0,0,0,0
         #print BUG_NUM
     return int(BUG_NUM),BUG_ID,BUG_CREATOR,BUG_RD,BUG_TITLE
 def main():
